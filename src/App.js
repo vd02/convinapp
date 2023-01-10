@@ -19,7 +19,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import Modal from "react-bootstrap/Modal";
 
-const api = "http://localhost:5000/users";
+// const api = "http://localhost:5000/users";
 
 const initialState = {
   name: "",
@@ -40,7 +40,11 @@ function App() {
     loadUsers();
   }, []);
   const loadUsers = async () => {
-    const response = await axios.get(api);
+    const devEnv = process.env.NODE_ENV !== "production";
+    const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+    const response = await axios.get(
+      `${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}`
+    );
     setData(response.data);
   };
 
@@ -75,7 +79,9 @@ function App() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      axios.delete(`${api}/${id}`);
+      const devEnv = process.env.NODE_ENV !== "production";
+      const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+      axios.delete(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${id}`);
       toast.success("Deleted Successfully");
       setTimeout(() => loadUsers(), 500);
     }
@@ -83,6 +89,8 @@ function App() {
 
   const handleDeleteByBucket = async (name) => {
     if (window.confirm("Are you sure you want to delete the bucket?")) {
+      const devEnv = process.env.NODE_ENV !== "production";
+      const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
       const arr1 = [];
       for (let i = 0; i < data.length; i++) {
         if (data[i].contact === name) {
@@ -93,7 +101,9 @@ function App() {
       // console.log(arr1.id);
       // console.log(arr1[0].id);
       for (let i = 0; i < arr1.length; i++) {
-        axios.delete(`${api}/${arr1[i]}`);
+        axios.delete(
+          `${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${arr1[i]}`
+        );
         setTimeout(() => loadUsers(), 500);
       }
       toast.success("Deleted Successfully");
@@ -124,12 +134,19 @@ function App() {
       toast.error("Please fill all the fields");
     } else {
       if (!editMode) {
-        axios.post(api, state);
+        const devEnv = process.env.NODE_ENV !== "production";
+        const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+        axios.post(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}`, state);
         toast.success("Added Successfully");
         setState({ name: "", email: "", contact: "", address: "" });
         setTimeout(() => loadUsers(), 500);
       } else {
-        axios.put(`${api}/${userId}`, state);
+        const devEnv = process.env.NODE_ENV !== "production";
+        const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+        axios.put(
+          `${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${userId}`,
+          state
+        );
         toast.success("Updated Successfully");
         setState({ name: "", email: "", contact: "", address: "" });
         setTimeout(() => loadUsers(), 500);
