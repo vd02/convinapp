@@ -1,28 +1,12 @@
 {
   "users": [
     {
-      "name": "BHAVIK JAIN",
+      "name": "Varun Dixit",
       "email": "https://www.youtube.com/watch?v=2fDzCWNS3ig&ab_channel=TheWeekndVEVO",
-      "contact": "ewf",
+      "contact": "Songs",
       "address": "",
       "isViewed": "false",
       "id": 1
-    },
-    {
-      "name": "BHAVIK JAIN",
-      "email": "https://www.youtube.com/watch?v=2fDzCWNS3ig&ab_channel=TheWeekndVEVO",
-      "contact": "Entertainment",
-      "address": "",
-      "isViewed": "false",
-      "id": 2
-    },
-    {
-      "name": "BHAVIK JAIN",
-      "email": "https://www.youtube.com/watch?v=2fDzCWNS3ig&ab_channel=TheWeekndVEVO",
-      "contact": "Entertainment",
-      "address": "",
-      "isViewed": "false",
-      "id": 3
     }
   ]
 }
