@@ -177,7 +177,7 @@ function App() {
         variant="dark"
         className="justify-content-center mb-4"
       >
-        <Navbar.Brand>Conwin Application by Varun Dixit</Navbar.Brand>
+        <Navbar.Brand>Convin Application by Varun Dixit</Navbar.Brand>
       </Navbar>
       <Container>
         <Row>
